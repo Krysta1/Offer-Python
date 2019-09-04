@@ -17,4 +17,25 @@ def max_product_cutting(length):
     return res
 
 
-print(max_product_cutting(10))
+def max_product_greed(length):  # 大于5尽量剪3的小段，贪婪解法。
+    if length < 2:
+        return 0
+    if length == 2:
+        return 1
+    if length < 3:
+        return 2
+
+    time_three = length // 3
+    length = length - 3 * time_three
+    if length == 0:
+        res = 3 ** time_three
+    elif length == 1:
+        res = 2 * 2 * 3 ** (time_three - 1)
+    else:
+        res = 2 * 3 * 3 ** (time_three - 1)
+
+    return res
+
+
+print(max_product_cutting(100))
+print(max_product_greed(100))
